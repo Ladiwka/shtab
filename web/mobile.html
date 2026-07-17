@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no"/>
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+  <meta name="apple-mobile-web-app-title" content="ШТАБ"/>
+  <meta name="theme-color" content="#0a0e0a"/>
+  <title>ШТАБ</title>
+  <link rel="stylesheet" href="/mobile.css"/>
+</head>
+<body>
+  <div class="top" id="top">
+    <button class="back" id="backBtn" hidden>‹</button>
+    <div class="ttl" id="ttl">ШТАБ</div>
+    <button class="ask" id="askBtn" title="Спросить по всем проектам">🔍</button>
+  </div>
+
+  <main class="screen" id="screen"></main>
+
+  <nav class="tabs">
+    <button class="tab on" data-t="projects"><span>▦</span>Проекты</button>
+    <button class="tab" data-t="tails"><span>✓</span>Хвосты</button>
+    <button class="tab" data-t="agents"><span>🤖</span>Агенты<i class="dot" id="agDot" hidden></i></button>
+    <button class="tab" data-t="notes"><span>✎</span>Заметки</button>
+  </nav>
+
+  <div class="sheet" id="askSheet" hidden>
+    <div class="sheet-box">
+      <div class="sheet-h">Спросить по всем проектам</div>
+      <textarea id="askText" rows="3" placeholder="Например: где у меня было про парсер цен? что осталось по боту?"></textarea>
+      <div class="sheet-acts">
+        <button class="btn ghost" id="askNo">Отмена</button>
+        <button class="btn" id="askGo">Спросить</button>
+      </div>
+      <div class="ask-out" id="askOut" hidden></div>
+    </div>
+  </div>
+
+  <script src="/mobile.js"></script>
+</body>
+</html>

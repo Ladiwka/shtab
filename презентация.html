@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>ШТАБ — командный центр над всеми проектами</title>
+<style>
+  :root{
+    --ink:#f2f6ee; --ink-2:#d4ddcd; --ink-3:#9fab98; --faint:#6f7a69;
+    --pc:#8fb1a8; --ok:#8bc06a; --warn:#e0b060;
+    --glass:rgba(20,26,20,.62); --line:rgba(255,255,255,.10);
+    --font-ui:'Segoe UI',system-ui,-apple-system,sans-serif;
+    --font-note:Georgia,'Iowan Old Style',serif;
+    --font-mono:ui-monospace,'SF Mono',Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#0a0e0a;color:var(--ink);font-family:var(--font-ui);line-height:1.6;-webkit-font-smoothing:antialiased}
+  .bg{position:fixed;inset:-40px;z-index:0;background:url('docs/фон.jpg') center/cover;
+      filter:blur(10px) brightness(.4) saturate(1.1);transform:scale(1.06)}
+  .scrim{position:fixed;inset:0;z-index:0;background:linear-gradient(180deg,rgba(6,9,7,.5),rgba(4,6,5,.85))}
+  .wrap{position:relative;z-index:1;max-width:1000px;margin:0 auto;padding:0 24px}
+
+  header{padding:110px 0 70px;text-align:center}
+  .logo{font-family:var(--font-note);font-size:15px;letter-spacing:.42em;color:var(--pc);text-transform:uppercase}
+  h1{font-family:var(--font-note);font-size:clamp(34px,6vw,60px);line-height:1.15;margin:18px 0 20px;letter-spacing:-.01em}
+  .lead{font-size:clamp(16px,2.1vw,20px);color:var(--ink-2);max-width:660px;margin:0 auto}
+  .sub{margin-top:16px;color:var(--faint);font-size:14.5px}
+
+  .shot{margin:46px auto 0;border-radius:20px;overflow:hidden;border:1px solid var(--line);
+        box-shadow:0 40px 90px rgba(0,0,0,.6);max-width:940px}
+  .shot img{display:block;width:100%}
+  .cap{text-align:center;color:var(--faint);font-size:12.5px;margin-top:12px}
+
+  section{padding:60px 0}
+  h2{font-family:var(--font-note);font-size:clamp(24px,3.4vw,34px);margin-bottom:12px}
+  .sec-lead{color:var(--ink-3);max-width:680px;margin-bottom:34px}
+
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:16px}
+  .card{background:var(--glass);backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:18px;padding:22px 24px}
+  .card h3{font-size:16.5px;margin-bottom:8px;display:flex;align-items:center;gap:9px}
+  .card p{color:var(--ink-3);font-size:14px}
+  .ic{font-size:19px}
+
+  table{width:100%;border-collapse:collapse;background:var(--glass);backdrop-filter:blur(14px);
+        border:1px solid var(--line);border-radius:18px;overflow:hidden}
+  th,td{padding:13px 18px;text-align:left;font-size:14.5px;border-bottom:1px solid rgba(255,255,255,.06)}
+  th{color:var(--faint);font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:600}
+  td:first-child{color:var(--ink-3)}
+  .yes{color:var(--ok)} .no{color:var(--faint)}
+  tr:last-child td{border-bottom:0}
+
+  pre{background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:14px;padding:16px 18px;
+      font-family:var(--font-mono);font-size:12.5px;color:var(--ink-2);overflow-x:auto}
+  code{font-family:var(--font-mono);font-size:.88em;color:var(--pc)}
+
+  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:8px}
+  .step{background:var(--glass);border:1px solid var(--line);border-radius:18px;padding:20px 22px}
+  .num{font-family:var(--font-note);font-size:30px;color:var(--pc);opacity:.75}
+  .step h3{font-size:15px;margin:6px 0 6px}
+  .step p{color:var(--ink-3);font-size:13.5px}
+
+  .honest{background:var(--glass);border:1px solid var(--line);border-left:3px solid var(--warn);
+          border-radius:14px;padding:20px 24px}
+  .honest li{color:var(--ink-3);font-size:14px;margin:7px 0 7px 18px}
+
+  footer{padding:70px 0 90px;text-align:center;color:var(--faint);font-size:13.5px}
+  .btn{display:inline-block;margin-top:18px;padding:14px 32px;border-radius:16px;background:var(--pc);
+       color:#12180f;font-weight:700;text-decoration:none;font-size:15px}
+  @media (max-width:640px){ header{padding:70px 0 40px} section{padding:44px 0} }
+</style>
+</head>
+<body>
+<div class="bg"></div><div class="scrim"></div>
+<div class="wrap">
+
+  <header>
+    <div class="logo">Штаб</div>
+    <h1>Все проекты — в одном тихом окне</h1>
+    <p class="lead">Что происходит в каждом проекте — человеческим языком. Живой ИИ-помощник в каждой папке.
+       Задачи агентам в фоне: дал задачу, ушёл, вернулся к готовому.</p>
+    <p class="sub">Десктоп · Windows и macOS · всё локально · твоя подписка на ИИ</p>
+    <div class="shot"><img src="docs/дашборд.png" alt="Обзор проектов в ШТАБе"/></div>
+    <div class="cap">Обзор: каждый проект — плитка со свежей выжимкой и состоянием</div>
+  </header>
+
+  <section>
+    <h2>Проблема</h2>
+    <p class="sec-lead">Проектов много: работа, пара ботов, эксперимент, курс. Про каждый помнишь всё меньше.
+       Терминалы разбросаны, помощник в каждой папке свой, «что я тут делал в прошлый вторник» —
+       вспоминаешь по коммитам. Инструменты, которые есть на рынке, смотрят внутрь <em>одного</em>
+       репозитория. Никто не отвечает на главный вопрос: <b>что вообще происходит и за что взяться?</b></p>
+  </section>
+
+  <section>
+    <h2>Что делает ШТАБ</h2>
+    <div class="cards">
+      <div class="card"><h3><span class="ic">◉</span>Статус по-человечески</h3>
+        <p>Не «14 коммитов в 3 ветках», а «Бот запущен, ждём первую покупку. Дальше — проверить лимиты».
+           Выжимку делает ИИ из журнала проекта или истории коммитов — сам, когда файлы меняются.</p></div>
+      <div class="card"><h3><span class="ic">✓</span>Хвосты</h3>
+        <p>Все «что дальше» со всех проектов — одним списком. Пульт недоделок, а не десять папок.</p></div>
+      <div class="card"><h3><span class="ic">❯</span>Терминал в каждой папке</h3>
+        <p>Живой Claude Code, Codex или Gemini прямо во вкладке проекта. Нужно несколько сразу —
+           стена терминалов: 2–4 помощника рядом, каждый в своём проекте.</p></div>
+      <div class="card"><h3><span class="ic">🤖</span>Фоновые агенты</h3>
+        <p>Дал задачу → закрыл окно → пришло уведомление → посмотрел изменения → принял.
+           Агент работает в отдельной ветке и не трогает твой код, пока ты не нажмёшь «Принять».</p></div>
+      <div class="card"><h3><span class="ic">🧠</span>Спросить по всем проектам</h3>
+        <p>«Где у меня было про парсер цен?» — ИИ отвечает по всем проектам сразу и говорит, где смотреть.</p></div>
+      <div class="card"><h3><span class="ic">📊</span>Свой пульт у проекта</h3>
+        <p>Свежий отчёт, хвост лога, встроенный дашборд — вкладка описывается одним файлом,
+           без программирования.</p></div>
+      <div class="card"><h3><span class="ic">◔</span>Расход</h3>
+        <p>Сколько токенов съел каждый проект за неделю и месяц. Видно, куда уходит лимит подписки.</p></div>
+      <div class="card"><h3><span class="ic">🔄</span>Две машины</h3>
+        <p>Тихий git pull всех проектов при запуске и возврате в окно. Светофор «всё ли уехало»,
+           чтобы спокойно уйти на другой компьютер.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Чем отличается</h2>
+    <table>
+      <tr><th></th><th>ШТАБ</th><th>Обычные мишн-контролы</th></tr>
+      <tr><td>Охват</td><td class="yes">все проекты сразу</td><td class="no">один репозиторий</td></tr>
+      <tr><td>Статус</td><td class="yes">человеческим языком</td><td class="no">ветки и диффы</td></tr>
+      <tr><td>Windows</td><td class="yes">да</td><td class="no">часто только macOS</td></tr>
+      <tr><td>Без GitHub</td><td class="yes">обычные локальные папки</td><td class="no">нужна удалёнка</td></tr>
+      <tr><td>Не-код проекты</td><td class="yes">курс, контент, документы</td><td class="no">только код</td></tr>
+      <tr><td>Данные</td><td class="yes">только на твоём диске</td><td class="no">часто облако</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>Начать</h2>
+    <p class="sec-lead">Нужны Node.js, Python и хотя бы один ИИ-помощник в консоли.</p>
+    <div class="steps">
+      <div class="step"><div class="num">1</div><h3>Поставить</h3>
+        <p>macOS: двойной клик по <code>Поднять-на-маке.command</code>.<br>Windows: <code>npm install &amp;&amp; npm start</code>.</p></div>
+      <div class="step"><div class="num">2</div><h3>Показать папку</h3>
+        <p>При первом запуске укажи папку, внутри которой лежат проекты. Дальше ШТАБ найдёт их сам.</p></div>
+      <div class="step"><div class="num">3</div><h3>Работать</h3>
+        <p>Открывай проект: статус, терминал, файлы, живой сайт — всё во вкладках одного окна.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Честно</h2>
+    <div class="honest">
+      <ul>
+        <li>Это личный однопользовательский инструмент, а не многопользовательский сервис.</li>
+        <li>Терминал и агенты запускают настоящий ИИ-помощник с доступом к твоим файлам — ровно как если бы ты запустил его руками.</li>
+        <li>Никаких «пропустить все разрешения», никаких авто-коммитов без спроса: агенты правят только свою копию, слияние — по кнопке.</li>
+        <li>Ничего не уходит наружу: ни телеметрии, ни облака. Твоя подписка, твой компьютер.</li>
+        <li>Интерфейс на русском. Английский — в планах.</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>
+    <div>Открытый код · лицензия MIT</div>
+    <a class="btn" href="https://github.com/">Забрать на GitHub</a>
+  </footer>
+</div>
+</body>
+</html>

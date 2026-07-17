@@ -1,0 +1,14 @@
+{
+  "name": "shtab-cockpit",
+  "version": "0.1.0",
+  "description": "ШТАБ — командный центр над всеми проектами",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Bogdan",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^33.2.0"
+  }
+}

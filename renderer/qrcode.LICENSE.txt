@@ -1,0 +1,1 @@
+MIT · QR Code Generator for JavaScript · Copyright (c) 2009 Kazuhiko Arase · https://www.npmjs.com/package/qrcode-generator

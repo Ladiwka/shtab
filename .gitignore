@@ -1,0 +1,9 @@
+node_modules/
+dist/
+*.log
+__pycache__/
+
+# личное — никогда в git
+data/
+!data/.gitkeep
+renderer/assets/wall/custom/
